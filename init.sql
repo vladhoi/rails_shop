@@ -1,1 +1,0 @@
-ALTER USER vladhoi WITH SUPERUSER;

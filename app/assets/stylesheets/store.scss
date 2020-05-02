@@ -1,53 +1,57 @@
 // Place all the styles related to the Store controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-store {
+
+.store {
   h1 {
     margin: 0;
     padding-bottom: 0.5em;
     font: 150% sans-serif;
     color: #393e46;
-    border-bottom: 3px dotted #b55400;
-  }
-}
-
-.entry {
-  margin: 0;
-  padding-bottom: 0.5em;
-  font: 150% sans-serif;
-  color: #393e46;
-  border-bottom: 3px dotted #b55400;
-
-  img {
-    width: 80px;
-    margin-right: 5px;
-    margin-bottom: 5px;
-    position: absolute;
+    border-bottom: 3px dotted #393e46;
   }
 
-  h3 {
-    font-size: 120%;
-    font-family: sans-serif;
-    margin-left: 100px;
-    margin-top: 0;
-    margin-bottom: 2px;
-    color: #393e46;
-  }
+  .entry {
+    overflow: auto;
+    margin-top: 1em;
+    border-bottom: 1px dotted #393e46;
+    min-height: 100px;
 
-  p,
-  div.price_line {
-    margin-left: 100px;
-    margin-top: 0.5em;
-    margin-bottom: 0.8em;
-  }
+    img {
+      width: 80px;
+      margin-right: 5px;
+      margin-bottom: 5px;
+      position: absolute;
+    }
 
-  form, div {
-    display: inline;
-  }
+    h3 {
+      font-size: 120%;
+      font-family: sans-serif;
+      margin-left: 100px;
+      margin-top: 0;
+      margin-bottom: 2px;
+      color: #393e46;
+      float: right;
 
-  .price {
-    color: #393e46;
-    font-weight: bold;
-    margin-right: 3em;
+    }
+
+    p,
+    div.price_line {
+      margin-left: 100px;
+      margin-top: 0.5em;
+      margin-bottom: 0.8em;
+      float: right;
+
+    }
+    form,
+    div {
+      display: inline;
+    }
+
+    .price {
+      color: #b55400;
+      font-weight: bold;
+      margin-right: 3em;
+    }
   }
 }

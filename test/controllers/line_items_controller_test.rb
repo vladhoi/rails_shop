@@ -17,11 +17,10 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create line_item" do
     assert_difference('LineItem.count') do
-      post line_items_url, params: { product_id: products(:ruby).id }
+      post line_items_url, params: { product_id: products(:one).id }    
     end
-    follow_redirect!
 
-    assert_select 'h2', 'Your Cart'
+    assert_redirected_to cart_path(assigns(:line_item).cart)
   end
 
   test "should show line_item" do
@@ -35,8 +34,7 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update line_item" do
-    patch line_item_url(@line_item),
-      params: { line_item: { product_id: @line_item.product_id } }
+    patch line_item_url(@line_item),params: { line_item: { product_id: @line_item.product_id } }
     assert_redirected_to line_item_url(@line_item)
   end
 
@@ -50,13 +48,12 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create line_item via ajax" do
     assert_difference('LineItem.count') do
-      post line_items_url, params: { product_id: products(:ruby).id }, xhr: true
+    post line_items_url, params: { product_id: products(:one).id },
+    xhr: true
     end
-
     assert_response :success
     assert_select_jquery :html, '#cart' do
-      assert_select 'tr#current_item td', /Robusta (Coffea caniphora)/
+    assert_select 'tr#current_item td', /Спінінг Salmo Blaster Spin 80 210см (20–80 Гр)/
     end
-  end
-
+    end
 end
