@@ -18,10 +18,12 @@
     min-height: 100px;
 
     img {
+      float: left;
+      padding: 1em;
       width: 80px;
       margin-right: 5px;
       margin-bottom: 5px;
-      position: absolute;
+      box-shadow: 0.176em 0.176em 0.354em 0px rgba(0,0,0,0.75);
     }
 
     h3 {
