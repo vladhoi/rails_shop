@@ -1,0 +1,53 @@
+ua:
+
+  layouts:
+    application:
+      title:       "Магазин Кави"
+      home:        "Домашня сторінка"
+      questions:   "Питання"
+      news:        "Новини"
+      contact:     "Контакти"
+
+  store:
+    index:
+      title_html:  "Каталог Товарів"
+      add_html:    "Купити"
+
+  carts:
+    cart:
+      title:         "Корзина"
+      empty:         "Очистити корзинуp"
+      checkout:      "Оформити"
+
+
+  number:
+    currency:
+      format:
+        unit:      "₴‎"
+        precision: 2
+        separator: "."
+        delimiter: " "
+        format:    "%u%n"
+
+  orders:
+    new:
+      legend:                "Введіть дані"
+    form:
+      name:                  "Ім'я"
+      address_html:          "Адреса"
+      email:                 "Електронна пошта"
+      pay_type:              "Тип оплати"
+      pay_prompt_html:       "Виберіть тип оплати"
+      submit:                "Купити"
+      pay_types:
+        check:               "Чек"
+        credit_card:         "Карта"
+        purchase_order:      "PO"
+      check_pay_type:
+        routing_number:      "Рутинг #"
+        account_number:      "Номер #"
+      credit_card_pay_type:
+        cc_number:           "CC #"
+        expiration_date:     "Expiry"
+      purchase_order_pay_type:
+        po_number:           "PO #"
