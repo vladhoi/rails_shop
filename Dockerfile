@@ -1,50 +1,34 @@
-FROM ruby:2.7.1-alpine
+FROM ruby:2.7.1
+ENV LANG C.UTF-8
 
-ENV BUNDLER_VERSION=2.1.4
+RUN apt-get update && \
+    apt-get install -y nodejs \
+                       vim \
+                       postgresql-client \
+                       --no-install-recommends && \
+    rm -rf /var/lib/apt/lists/*
 
-RUN apk add --update --no-cache \
-      binutils-gold \
-      build-base \
-      curl \
-      file \
-      g++ \
-      gcc \
-      git \
-      less \
-      libstdc++ \
-      libffi-dev \
-      libc-dev \ 
-      linux-headers \
-      libxml2-dev \
-      libxslt-dev \
-      libgcrypt-dev \
-      make \
-      netcat-openbsd \
-      nodejs \
-      openssl \
-      pkgconfig \
-      postgresql-dev \
-      python \
-      tzdata \
-      yarn 
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update -qq && apt-get install -y build-essential yarn
 
+#Cache bundle install
+WORKDIR /tmp
+ADD ./Gemfile Gemfile
+ADD ./Gemfile.lock Gemfile.lock
+RUN bundle install
 
-RUN gem install bundler -v 2.1.4
-
-WORKDIR /app
-
-COPY Gemfile Gemfile.lock ./
-
-RUN bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java
-
-RUN bundle config build.nokogiri --use-system-libraries
-
-RUN bundle check || bundle install 
+ENV APP_ROOT /workspace
+RUN mkdir -p $APP_ROOT
+WORKDIR $APP_ROOT
+COPY . $APP_ROOT
 
 COPY package.json yarn.lock ./
 
 RUN yarn install --check-files
-
-COPY . ./ 
-
+COPY ./entrypoints/docker-entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/docker-entrypoint.sh
 ENTRYPOINT ["./entrypoints/docker-entrypoint.sh"]
+
+EXPOSE  3000
+CMD rm -f tmp/pids/server.pid && rails s -b '0.0.0.0'

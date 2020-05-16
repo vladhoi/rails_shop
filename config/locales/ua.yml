@@ -16,7 +16,7 @@ ua:
   carts:
     cart:
       title:         "Корзина"
-      empty:         "Очистити корзинуp"
+      empty:         "Очистити корзину"
       checkout:      "Оформити"
 
 
